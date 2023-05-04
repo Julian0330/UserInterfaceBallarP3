@@ -37,6 +37,12 @@ public class Target : MonoBehaviour
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
 
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -51,5 +57,11 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+
+        if (!gameObject.CompareTag("Bad"))
+        {
+            gameManager.GameOver();
+        }
     }
+ 
 }
